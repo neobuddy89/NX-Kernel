@@ -5829,8 +5829,8 @@ static void mxt540e_power_off_oled(void)
 #define MXT540E_MAX_MT_FINGERS		10
 #define MXT540E_CHRGTIME_BATT		48
 #define MXT540E_CHRGTIME_CHRG		48
-#define MXT540E_THRESHOLD_BATT		50
-#define MXT540E_THRESHOLD_CHRG		40
+#define MXT540E_THRESHOLD_BATT		40
+#define MXT540E_THRESHOLD_CHRG		37
 #define MXT540E_ACTVSYNCSPERX_BATT		34
 #define MXT540E_ACTVSYNCSPERX_CHRG		34
 #define MXT540E_CALCFG_BATT		98
@@ -7432,9 +7432,9 @@ static struct platform_device *smdkc210_devices[] __initdata = {
 /* below temperature base on the celcius degree */
 struct s5p_platform_tmu u1_tmu_data __initdata = {
 	.ts = {
-		.stop_1st_throttle  = 61,
-		.start_1st_throttle = 64,
-		.stop_2nd_throttle  = 87,
+		.stop_1st_throttle  = 62,
+		.start_1st_throttle = 67,
+		.stop_2nd_throttle  = 80,
 		.start_2nd_throttle = 103,
 		.start_tripping     = 110,
 		.start_emergency    = 120,
@@ -7442,7 +7442,7 @@ struct s5p_platform_tmu u1_tmu_data __initdata = {
 		.start_mem_throttle = 85,
 	},
 	.cpufreq = {
-		.limit_1st_throttle  = 800000, /* 800MHz in KHz order */
+		.limit_1st_throttle  = 1000000, /* 1000MHz in KHz order */
 		.limit_2nd_throttle  = 200000, /* 200MHz in KHz order */
 	},
 };
