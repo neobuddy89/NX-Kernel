@@ -712,9 +712,12 @@ static int mass_storage_function_init(struct android_usb_function *f,
 					__func__, android_usb_pdata->nluns,
 					android_usb_pdata->cdfs_support);
 		cdfs = android_usb_pdata->cdfs_support;
-		config->fsg.nluns = android_usb_pdata->nluns + cdfs;
-
-		for (i = 0; i < android_usb_pdata->nluns; i++) {
+		if (android_usb_pdata->nluns > 1){
+			config->fsg.nluns = android_usb_pdata->nluns;
+		} else {
+			config->fsg.nluns = 2;
+		}
+		for (i = 0; i < config->fsg.nluns; i++) {
 
 			config->fsg.luns[i].removable = 1;
 			config->fsg.luns[i].nofua = 1;
@@ -732,7 +735,7 @@ static int mass_storage_function_init(struct android_usb_function *f,
 			return PTR_ERR(common);
 		}
 
-		for (i = 0; i < android_usb_pdata->nluns; i++) {
+		for (i = 0; i < config->fsg.nluns; i++) {
 			char luns[5];
 			err = snprintf(luns, 5, "lun%d", i);
 			if (err == 0) {
