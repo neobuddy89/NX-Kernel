@@ -1,0 +1,78 @@
+Manifest-Version: 1.0
+Created-By: 1.0 (Android SignApk)
+
+Name: system/lib/modules/opt/asix.ko
+SHA1-Digest: D34pxC8YP+lq/fnGpi1zaJvrs3k=
+
+Name: system/lib/modules/opt/tun.ko
+SHA1-Digest: Ae5lgniHR5Mljo0IkmjfYygHgU8=
+
+Name: boot.img
+SHA1-Digest: RWJ96mVYyCqX/rXpaYY9cOc2APw=
+
+Name: system/lib/modules/opt/lockd.ko
+SHA1-Digest: qHLV/7ilCmigQ+36Nb12/P1t3uU=
+
+Name: system/lib/modules/opt/rpcsec_gss_krb5.ko
+SHA1-Digest: 413atCVVvhe/UhpskuGY9JE4NKs=
+
+Name: system/lib/modules/opt/nfs_acl.ko
+SHA1-Digest: pIXMjmJ93fJutbylnc9oXT7q/xM=
+
+Name: system/lib/modules/opt/pegasus.ko
+SHA1-Digest: jDi1KqJ/pnq1YbIOba3x6LGnULg=
+
+Name: META-INF/com/google/android/updater-script
+SHA1-Digest: XNJJTEt18Z4FHzvOlullYMQjGvg=
+
+Name: system/etc/init.d/09modules
+SHA1-Digest: 78ZhCTDG7QlPRBluEu3eIZbQ8rM=
+
+Name: system/etc/init.d/04kernel
+SHA1-Digest: Boa639aBnwsJMtbNYbZy3CUWgFE=
+
+Name: system/lib/modules/opt/j4fs.ko
+SHA1-Digest: GBc9SdEGCzFe1Fgb4A4ydLK9CfU=
+
+Name: system/lib/modules/opt/hfs.ko
+SHA1-Digest: NLuL6vwg5ogyr6YXsJhePr/xWmA=
+
+Name: system/lib/modules/opt/rtl8150.ko
+SHA1-Digest: HT2hG44u7ZYFf4JLxIrtQKdrqI0=
+
+Name: system/lib/modules/opt/sunrpc.ko
+SHA1-Digest: bfi0cbbsmufc6BHo7C27AKo0Yx8=
+
+Name: system/lib/modules/opt/auth_rpcgss.ko
+SHA1-Digest: GsZCOJq3V4s1JD93ORYGOEnoEbU=
+
+Name: system/lib/modules/opt/dm9601.ko
+SHA1-Digest: u1l6lGPMiGMDlfIQH5M8/xjVJZ8=
+
+Name: system/lib/modules/scsi_wait_scan.ko
+SHA1-Digest: P8dcqxRBp8tt0XKcGtGsmZtkBEY=
+
+Name: system/lib/modules/opt/hfsplus.ko
+SHA1-Digest: CNpwHxbHq63S1iOXl+fIo+pULfs=
+
+Name: META-INF/com/google/android/update-binary
+SHA1-Digest: EYjgp9jNMEihHKZQgcqb/9Hshmo=
+
+Name: system/etc/init.d/08mount
+SHA1-Digest: SPvil+EZAGtew7lqdQJO7CVvPpw=
+
+Name: system/lib/modules/opt/cifs.ko
+SHA1-Digest: 8GMe9z2Eq5BodZ2Q6SMDLaPQ790=
+
+Name: system/lib/modules/opt/Si4709_driver.ko
+SHA1-Digest: i29tU91maqc2v/gRDUvd2p1mbAw=
+
+Name: system/lib/modules/opt/nfs.ko
+SHA1-Digest: 0o7hMfOHVXHSz44S2GF/v6/3V8E=
+
+Name: system/lib/hw/lights.exynos4.so
+SHA1-Digest: 72HvXeLDYhmz0rcoTVM33NV4cqU=
+
+Name: system/lib/modules/dhd.ko
+SHA1-Digest: W4nNPxKzsyzTUMy3miKzAQpZ8Qk=
+

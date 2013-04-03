@@ -1,0 +1,3 @@
+#!/system/bin/sh
+setprop persist.sys.usb.config mass_storage,adb
+setprop sys.usb.state mass_storage,adb

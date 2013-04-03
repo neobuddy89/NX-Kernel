@@ -1,0 +1,79 @@
+Signature-Version: 1.0
+Created-By: 1.0 (Android SignApk)
+SHA1-Digest-Manifest: E4+ggOufMFnc2ecydOtOpky1hhY=
+
+Name: system/lib/modules/opt/asix.ko
+SHA1-Digest: VlUEXuasZKhVKrwFhXOPK7Iw2x8=
+
+Name: system/lib/modules/opt/tun.ko
+SHA1-Digest: XHMFjW+6KJIS6wOq7lwBkL0pJXA=
+
+Name: boot.img
+SHA1-Digest: eClPcU+eyhGBDs0OgOVL49LOIUs=
+
+Name: system/lib/modules/opt/lockd.ko
+SHA1-Digest: oKj5q+IBCbvzSCL8XjejM+IjRlE=
+
+Name: system/lib/modules/opt/rpcsec_gss_krb5.ko
+SHA1-Digest: OHW+LjhiOBLeeYT1ZX/RxzYnIOQ=
+
+Name: system/lib/modules/opt/nfs_acl.ko
+SHA1-Digest: Lkf+PRQ0BfHwL29R/FxRCKGC5tg=
+
+Name: system/lib/modules/opt/pegasus.ko
+SHA1-Digest: C+0+LEoBNef2yB8JZxtJxgF9e4g=
+
+Name: META-INF/com/google/android/updater-script
+SHA1-Digest: 5gtpn4QkOY7SHgyUG+GfbmR0BHk=
+
+Name: system/etc/init.d/09modules
+SHA1-Digest: lZEbpA0rZ1xJV2jqiXeicRFZoLo=
+
+Name: system/etc/init.d/04kernel
+SHA1-Digest: FMd0Wh51M5PSp5kiL7BPTzSLtPQ=
+
+Name: system/lib/modules/opt/j4fs.ko
+SHA1-Digest: RC3UZXZDgRTkovUe8X7m6QXsWOs=
+
+Name: system/lib/modules/opt/rtl8150.ko
+SHA1-Digest: bDMfsSPEqBLBeAS8t6n38K6feC4=
+
+Name: system/lib/modules/opt/hfs.ko
+SHA1-Digest: fCcv9hGMKHJXXVY4eZeBHCWnSf8=
+
+Name: system/lib/modules/opt/sunrpc.ko
+SHA1-Digest: JM9zNqP3rH3DbFK/GNMkN7P9a7M=
+
+Name: system/lib/modules/opt/auth_rpcgss.ko
+SHA1-Digest: WiCPTi1fz6J885FTbF5wxF/kj1Q=
+
+Name: system/lib/modules/opt/dm9601.ko
+SHA1-Digest: Pn73KrUOcRpk7BfMkC4TNh5wH3s=
+
+Name: system/lib/modules/scsi_wait_scan.ko
+SHA1-Digest: fw3aloEoYm+aEAqOga0NpEcehuY=
+
+Name: system/lib/modules/opt/hfsplus.ko
+SHA1-Digest: 2CmKDTUraC/Jwf7IuqX9N5AAod8=
+
+Name: META-INF/com/google/android/update-binary
+SHA1-Digest: euNsZ9Sirz9Tnli8SipDq9OCYRg=
+
+Name: system/etc/init.d/08mount
+SHA1-Digest: 2ftpSnXt4yV4iDL2GvP8zY7fR7I=
+
+Name: system/lib/modules/opt/cifs.ko
+SHA1-Digest: /3LpTdSu32Go57+3rduR4waZ4HA=
+
+Name: system/lib/modules/opt/Si4709_driver.ko
+SHA1-Digest: 8PWklLr+WiMXeLXXb6VIyqXCiKk=
+
+Name: system/lib/modules/opt/nfs.ko
+SHA1-Digest: /w/FcDRrim+nUWa6pJAI6LG8LPc=
+
+Name: system/lib/hw/lights.exynos4.so
+SHA1-Digest: 9iOPP8OCrrV721Ht/c63jbB1OyU=
+
+Name: system/lib/modules/dhd.ko
+SHA1-Digest: cHgWkGT7dHUtz0jBvfsfXhsMALg=
+

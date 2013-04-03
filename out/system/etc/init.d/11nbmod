@@ -1,0 +1,57 @@
+#!/system/bin/sh
+D_FOLDER=/data/zipaligned;
+L="log -p i -t cm";
+ZIPALIGNDB=/data/nb_zipalign.log;
+if [ ! -d $D_FOLDER ]; 
+  then
+    mkdir -p $D_FOLDER;
+fi
+for DIR in /system/app /system/framework /data/app; do
+	cd $DIR;
+	for APK in *.apk; do
+		if [ $APK -ot $ZIPALIGNDB ] && [ $(grep "$DIR/$APK" $ZIPALIGNDB|wc -l) -gt 0 ]; then
+			echo "Already checked: $DIR/$APK";
+		else
+			ZIPCHECK=`zipalign -c -v 4 $APK | grep FAILED | wc -l`;
+			if [ $ZIPCHECK == "1" ]; then
+				$L "Now aligning: $DIR/$APK";
+				zipalign -v -f 4 $APK $D_FOLDER/$APK;
+				busybox mount -o rw,remount /system;
+				cp -f -p $D_FOLDER/$APK $APK;
+				grep "$DIR/$APK" $ZIPALIGNDB > /dev/null || echo $DIR/$APK >> $ZIPALIGNDB;
+			else
+				$L "Already aligned: $DIR/$APK";
+				grep "$DIR/$APK" $ZIPALIGNDB > /dev/null || echo $DIR/$APK >> $ZIPALIGNDB;
+			fi;
+		fi;
+	done;
+done;
+rm -r -f $D_FOLDER;
+rmdir $D_FOLDER;
+touch $ZIPALIGNDB;
+for i in \
+`find /data -iname "*.db"`; 
+do \
+	sqlite3 $i 'VACUUM;' || :
+	sqlite3 $i 'REINDEX;' || :
+done;
+for i in \
+`find /mnt/sdcard -iname "*.db"`; 
+do \
+	sqlite3 $i 'VACUUM;' || :
+	sqlite3 $i 'REINDEX;' || :
+done;
+rm -rf /cache/lost+found/* 2> /dev/null;
+rm -rf /data/lost+found/* 2> /dev/null;
+rm -rf /data/tombstones/* 2> /dev/null;
+rm -rf /data/anr/* 2> /dev/null;
+chmod 400 /data/tombstones -R;
+chown drm:drm /data/tombstones -R;
+chmod 0777 /dev/cpuctl/ -R;
+chmod 0766 /data/anr/ -R;
+chmod 0777 /data/system/inputmethod/ -R;
+chmod 0777 /sys/devices/system/cpu/ -R;
+chown root:system /sys/devices/system/cpu/ -R;
+chmod 0777 /data/anr -R;
+chown system:system /data/anr -R;
+touch /data/.nbmod;
