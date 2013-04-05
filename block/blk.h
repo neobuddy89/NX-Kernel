@@ -94,7 +94,7 @@ static inline struct request *__elv_next_request(struct request_queue *q)
 			q->flush_queue_delayed = 1;
 			return NULL;
 		}
-		if (unlikely(blk_queue_dead(q)) ||
+		if (test_bit(QUEUE_FLAG_DEAD, &q->queue_flags) ||
 		    !q->elevator->ops->elevator_dispatch_fn(q, 0))
 			return NULL;
 	}
