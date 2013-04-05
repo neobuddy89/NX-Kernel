@@ -2060,7 +2060,6 @@ static void cfq_dispatch_insert(struct request_queue *q, struct request *rq)
 	cfq_remove_request(rq);
 	cfqq->dispatched++;
 	(RQ_CFQG(rq))->dispatched++;
-	rq->ioprio = IOPRIO_PRIO_VALUE(cfqq->ioprio_class, cfqq->ioprio);
 	elv_dispatch_sort(q, rq);
 
 	cfqd->rq_in_flight[cfq_cfqq_sync(cfqq)]++;
@@ -2920,7 +2919,6 @@ static void changed_ioprio(struct io_context *ioc, struct cfq_io_context *cic)
 static void cfq_ioc_set_ioprio(struct io_context *ioc)
 {
 	call_for_each_cic(ioc, changed_ioprio);
-	ioc->ioprio_changed = 0;
 }
 
 static void cfq_init_cfqq(struct cfq_data *cfqd, struct cfq_queue *cfqq,
@@ -3212,8 +3210,13 @@ retry:
 		goto err_free;
 
 out:
-	smp_read_barrier_depends();
-	if (unlikely(ioc->ioprio_changed))
+	/*
+	 * test_and_clear_bit() implies a memory barrier, paired with
+	 * the wmb() in fs/ioprio.c, so the value seen for ioprio is the
+	 * new one.
+	 */
+	if (unlikely(test_and_clear_bit(IOC_CFQ_IOPRIO_CHANGED,
+					ioc->ioprio_changed)))
 		cfq_ioc_set_ioprio(ioc);
 
 #ifdef CONFIG_CFQ_GROUP_IOSCHED
@@ -4290,11 +4293,7 @@ static void __exit cfq_exit(void)
 	cfq_slab_kill();
 }
 
-#ifdef CONFIG_FAST_RESUME
-beforeresume_initcall(cfq_init);
-#else
 module_init(cfq_init);
-#endif
 module_exit(cfq_exit);
 
 MODULE_AUTHOR("Jens Axboe");
