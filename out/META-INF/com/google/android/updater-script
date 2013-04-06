@@ -47,6 +47,10 @@ delete_recursive("/data/data/com.teamblockbuster");
 delete("/system/litepro");
 delete("/system/etc/init.d/99nstools");
 delete("/system/etc/init.d/01zram-swap");
+delete("/system/etc/init.d/10enableUMS");
+delete("/system/etc/init.d/10enableMTP");
+delete("/system/etc/init.d/30disableloggers");
+delete("/system/etc/init.d/30enableloggers");
 delete("/data/user.log");
 
 ui_print("Entering Matrix ...");
