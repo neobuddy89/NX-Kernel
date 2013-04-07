@@ -41,17 +41,4 @@ do \
 	sqlite3 $i 'VACUUM;' || :
 	sqlite3 $i 'REINDEX;' || :
 done;
-rm -rf /cache/lost+found/* 2> /dev/null;
-rm -rf /data/lost+found/* 2> /dev/null;
-rm -rf /data/tombstones/* 2> /dev/null;
-rm -rf /data/anr/* 2> /dev/null;
-chmod 400 /data/tombstones -R;
-chown drm:drm /data/tombstones -R;
-chmod 0777 /dev/cpuctl/ -R;
-chmod 0766 /data/anr/ -R;
-chmod 0777 /data/system/inputmethod/ -R;
-chmod 0777 /sys/devices/system/cpu/ -R;
-chown root:system /sys/devices/system/cpu/ -R;
-chmod 0777 /data/anr -R;
-chown system:system /data/anr -R;
 touch /data/.nbmod;
