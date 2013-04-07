@@ -1,0 +1,34 @@
+#!/system/bin/sh
+# NX-Kernel ZRam enable & VM tweaks v0.1
+# by neobuddy89
+
+# set initial vm vales
+echo "1000" > /proc/sys/vm/dirty_writeback_centisecs;
+echo "3000" > /proc/sys/vm/dirty_expire_centisecs;
+echo "1" > /proc/sys/vm/oom_kill_allocating_task;
+echo "0" > /proc/sys/vm/panic_on_oom;
+echo "120" > /proc/sys/kernel/panic;
+echo "4" > /proc/sys/vm/min_free_order_shift; # default: 4
+echo "1" > /proc/sys/vm/overcommit_memory; # default: 0
+echo "50" > /proc/sys/vm/overcommit_ratio; # default: 50
+echo "32 32" > /proc/sys/vm/lowmem_reserve_ratio;
+echo "3" > /proc/sys/vm/page-cluster; # default: 3
+echo "8192" > /proc/sys/vm/min_free_kbytes;
+echo "100" > /proc/sys/vm/vfs_cache_pressure
+echo "40" > /proc/sys/vm/swappiness
+		
+if [ `cat /proc/swaps | grep 50000 |  wc -l` != "1" ]; then
+	if [ -e /dev/block/zram0 ]; then
+		# for on the fly changes we need to shutdown ZRAM first
+		swapoff /dev/block/zram0 >/dev/null 2>&1;
+		echo "1" > /sys/block/zram0/reset;
+		# setting size of each ZRAM swap drives
+		echo "51204000" > /sys/block/zram0/disksize;
+		# creating SWAPS from ZRAM drives
+		mkswap /dev/block/zram0 >/dev/null;
+		# activating ZRAM swaps with the same priority to load balance ram swapping
+		chmod 755 /sbin/swapon;
+		swapon /dev/block/zram0 -p 20 >/dev/null 2>&1;
+		touch /data/.nxzram;
+	fi;
+fi;
