@@ -68,10 +68,6 @@ run_program("/sbin/busybox","sh", "fix_permissions","-l");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/etc/init.d");
 set_perm(0, 0, 0777, "/system/etc/init.d");
 
-ui_print("Post-Cleaning ...");
-delete_recursive("/cache");
-delete_recursive("/data/dalvik-cache");
-
 ui_print("Unmounting ...");
 unmount("/cache");
 unmount("/system");
