@@ -386,7 +386,7 @@ static int get_backlight_level_from_brightness(int brightness)
 	case 250 ... 254:
 		backlightlevel = GAMMA_250CD;
 		break;
-	case 255:
+	case 255 ... 299:
 		backlightlevel = GAMMA_300CD;
 		break;
 	default:
@@ -896,9 +896,6 @@ static int update_brightness(struct lcd_info *lcd, u8 force)
 	mutex_lock(&lcd->bl_lock);
 
 	brightness = lcd->bd->props.brightness;
-
-	if (unlikely(!lcd->auto_brightness && brightness > 250))
-		brightness = 250;
 
 	lcd->bl = get_backlight_level_from_brightness(brightness);
 
