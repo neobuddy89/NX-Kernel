@@ -2,7 +2,8 @@
 # NX-Kernel ZRam enable & VM tweaks v0.1
 # by neobuddy89
 
-# set initial vm vales
+# swappiness = 0 - it will swap only to avoid an out of memory condition
+# swappiness = 60 - default on desktop - may increase resonse latency (not good)
 echo "0" > /proc/sys/vm/swappiness
 		
 if [ `cat /proc/swaps | grep 50000 |  wc -l` != "1" ]; then
