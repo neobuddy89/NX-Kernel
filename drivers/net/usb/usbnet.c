@@ -367,9 +367,6 @@ static int rx_submit (struct usbnet *dev, struct urb *urb, gfp_t flags)
 		return -ENOMEM;
 	}
 
-	if (dev->net->type != ARPHRD_RAWIP)
-		skb_reserve(skb, NET_IP_ALIGN);
-
 	entry = (struct skb_data *) skb->cb;
 	entry->urb = urb;
 	entry->dev = dev;
