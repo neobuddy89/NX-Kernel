@@ -17,10 +17,6 @@ delete("/system/etc/init.d/S91voltctrl");
 delete("/system/etc/init.d/S98bolt_siyah");
 delete("/system/etc/init.d/S_volt_scheduler");
 delete("/system/etc/init.d/16journal");
-delete_recursive("/data/void-settings");
-delete("/res/misc/void");
-delete("/system/bin/void");
-delete("/xbin/bin/void");
 delete("/res/misc/NEAK-Downloader.apk");
 delete_recursive("/data/neak");
 delete("/res/neak.extra");
@@ -57,12 +53,10 @@ package_extract_dir("system", "/system");
 show_progress(0.100000, 0);
 
 ui_print("Flashing NeoX ...");
-assert(package_extract_file("boot.img", "/tmp/boot.img"),
-       write_raw_image("/tmp/boot.img", "/dev/block/mmcblk0p5"),
-       delete("/tmp/boot.img"));
-
+package_extract_file("boot.img", "/tmp/boot.img");
+run_program("/sbin/busybox", "dd", "if=/tmp/boot.img", "of=/dev/block/mmcblk0p5");
+delete("/tmp/boot.img");
 run_program("/sbin/busybox", "sync");
-run_program("/sbin/busybox","sh", "fix_permissions","-l");
 
 set_perm_recursive(0, 2000, 0755, 0755, "/system/etc/init.d");
 set_perm(0, 0, 0777, "/system/etc/init.d");
