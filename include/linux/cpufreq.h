@@ -406,9 +406,15 @@ extern struct cpufreq_governor cpufreq_gov_zzmoove;
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_ABYSSPLUG)
 extern struct cpufreq_governor cpufreq_gov_abyssplug;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_abyssplug)
+#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_ABYSSPLUG2)
+extern struct cpufreq_governor cpufreq_gov_abyssplug2;
+#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_abyssplug2)
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_LAGFREE)
 extern struct cpufreq_governor cpufreq_gov_lagfree;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_lagfree)
+#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_HYDRXQ)
+extern struct cpufreq_governor cpufreq_gov_hydrxq;
+#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_hydrxq)
 #endif
 
 

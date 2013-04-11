@@ -167,6 +167,19 @@ config CPU_FREQ_DEFAULT_GOV_ABYSSPLUG
 	  the help section of the driver. Fallback governor will be the
 	  performance governor.
 
+config CPU_FREQ_DEFAULT_GOV_ABYSSPLUG2
+        bool "abyssplug2"
+        select CPU_FREQ_GOV_ABYSSPLUG2
+        select CPU_FREQ_GOV_PERFORMANCE
+        ---help---
+        Use the CPUFreq governor 'abyssplug2' as default. This allows you
+        to get a full dynamic frequency capable system with CPU
+        hotplug support by simply loading your cpufreq low-level
+        hardware driver. Be aware that not all cpufreq drivers
+        support the hotplug governor. If unsure have a look at
+        the help section of the driver. Fallback governor will be the
+        performance governor.
+
 config CPU_FREQ_DEFAULT_GOV_LAGFREE
 	bool "lagfree"
 	select CPU_FREQ_GOV_LAGFREE
@@ -191,6 +204,12 @@ config CPU_FREQ_DEFAULT_GOV_HOTPLUG
 	    support the hotplug governor. If unsure have a look at
 	    the help section of the driver. Fallback governor will be the
 	    performance governor. 
+
+config CPU_FREQ_DEFAULT_GOV_HYDRXQ
+	bool "hydrxq"
+	select CPU_FREQ_GOV_HYDRXQ
+	help
+          Use the CPUFreq governor 'hydrxq' as default.
 
 endchoice
 
@@ -394,6 +413,26 @@ config CPU_FREQ_GOV_ABYSSPLUG
 
 	  If in doubt, say N.
 
+config CPU_FREQ_GOV_ABYSSPLUG2
+        tristate "'abyssplug2' cpufreq governor"
+        depends on CPU_FREQ && NO_HZ && HOTPLUG_CPU
+        ---help---
+        'abyssplug2' - this driver mimics the frequency scaling behavior
+        in 'ondemand', but with several key differences. First is
+        that frequency transitions use the CPUFreq table directly,
+        instead of incrementing in a percentage of the maximum
+        available frequency. Second 'abyssplug2' will offline auxillary
+        CPUs when the system is idle, and online those CPUs once the
+        system becomes busy again. This last feature is needed for
+        architectures which transition to low power states when only
+        the "master" CPU is online, or for thermally constrained
+        devices.
+
+        If you don't have one of these architectures or devices, use
+        'ondemand' instead.
+
+        If in doubt, say N.
+
 config CPU_FREQ_GOV_LAGFREE
         tristate "'lagfree' cpufreq governor"
         depends on CPU_FREQ
@@ -431,6 +470,12 @@ config CPU_FREQ_GOV_HOTPLUG
 
          If in doubt, say N.
 
+config CPU_FREQ_GOV_HYDRXQ
+        tristate "'hydrxq' cpufreq governor"
+        depends on CPU_FREQ
+        help
+          'hydrxq' - hotplug mechanism added in lulzactive
+
 config SLP_CHECK_CPU_LOAD
         bool "check load and frequency of cpu"
 	depends on CPU_FREQ_GOV_SLP
@@ -445,8 +490,6 @@ config CPU_FREQ_DVFS_MONITOR
 	help
 	  This option adds a proc node for dvfs monitoring.
 	  /proc/dvfs_mon
-
-
 
 menu "x86 CPU frequency scaling drivers"
 depends on X86
