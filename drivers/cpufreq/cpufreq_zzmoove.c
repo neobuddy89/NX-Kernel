@@ -80,9 +80,9 @@
 
 // ZZ: default values
 #define DEF_FREQUENCY_UP_THRESHOLD		(70)
-#define DEF_FREQUENCY_UP_THRESHOLD_HOTPLUG1	(68) // ZZ: hotplug up threshold for cpu1 (cpu0 stays allways on)
+#define DEF_FREQUENCY_UP_THRESHOLD_HOTPLUG1	(68) // ZZ: hotplug up threshold for cpu1 (cpu0 stays always on)
 #define DEF_FREQUENCY_DOWN_THRESHOLD		(52) 
-#define DEF_FREQUENCY_DOWN_THRESHOLD_HOTPLUG1	(55) // ZZ: hotplug down threshold for cpu1 (cpu0 stays allways on)
+#define DEF_FREQUENCY_DOWN_THRESHOLD_HOTPLUG1	(55) // ZZ: hotplug down threshold for cpu1 (cpu0 stays always on)
 
 /*
  * The polling frequency of this governor depends on the capability of
@@ -213,19 +213,53 @@ static struct dbs_tuners {
  * Table modified for use with Samsung N7000 by NeoBuddy89 March 2013
  * zzmoove v0.3 - table modified to reach overclocking frequencies up to 1600mhz
  */
-static int mn_freqs[15][1]={ 1600000, 1500000, 1400000, 1300000, 1200000, 1100000, 1000000, 900000, 800000, 700000, 600000, 500000, 400000, 300000, 200000};
+static int mn_freqs[16][3]={
+    {1600000,1600000,1500000},
+    {1500000,1600000,1400000},
+    {1400000,1500000,1300000},
+    {1300000,1400000,1200000},
+    {1200000,1300000,1100000},
+    {1100000,1200000,1000000},
+    {1000000,1100000, 900000},
+    { 900000,1000000, 800000},
+    { 800000, 900000, 700000},
+    { 700000, 800000, 600000},
+    { 600000, 700000, 500000},
+    { 500000, 600000, 400000},
+    { 400000, 500000, 300000},
+    { 300000, 400000, 200000},
+    { 200000, 300000, 100000},
+    { 100000, 200000, 100000},
+};
 
 /* 
  * Table modified for use with Samsung N7000 by NeoBuddy89 March 2013
  * zzmoove v0.3 - table modified to reach overclocking frequencies up to 1600mhz
  */
-static int mn_freqs_power[15][1]={1600000, 1500000, 1400000, 1300000, 1200000, 1100000, 1000000, 900000, 800000, 700000, 600000, 500000, 400000, 300000, 200000};
+static int mn_freqs_power[16][3]={
+    {1600000,1600000,1500000},
+    {1500000,1600000,1400000},
+    {1400000,1500000,1300000},
+    {1300000,1400000,1200000},
+    {1200000,1300000,1100000},
+    {1100000,1200000,1000000},
+    {1000000,1100000, 900000},
+    { 900000,1000000, 800000},
+    { 800000, 900000, 700000},
+    { 700000, 800000, 600000},
+    { 600000, 700000, 500000},
+    { 500000, 600000, 400000},
+    { 400000, 500000, 300000},
+    { 300000, 400000, 200000},
+    { 200000, 300000, 100000},
+    { 100000, 200000, 100000},
+};
 
 static int mn_get_next_freq(unsigned int curfreq, unsigned int updown, unsigned int load) {
     int i=0;
     if (load < dbs_tuners_ins.smooth_up)
     {
-        for(i = 0; i < 15; i++)
+        for(i = 0; i < 16; i++)
         {
             if(curfreq == mn_freqs[i][MN_FREQ])
                 return mn_freqs[i][updown]; // updown 1|2
@@ -233,7 +267,7 @@ static int mn_get_next_freq(unsigned int curfreq, unsigned int updown, unsigned 
     }
     else
     {
-        for(i = 0; i < 15; i++)
+        for(i = 0; i < 16; i++)
         {
             if(curfreq == mn_freqs_power[i][MN_FREQ])
                 return mn_freqs_power[i][updown]; // updown 1|2
