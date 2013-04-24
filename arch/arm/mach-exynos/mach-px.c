@@ -3055,8 +3055,8 @@ static struct mpu3050_platform_data mpu3050_pdata = {
 			1, 0, 0,
 			0, 0, 1},
 #elif defined(CONFIG_MACH_P2)
-	.orientation = {1, 0, 0,
-			0, -1, 0,
+	.orientation = {0, 1, 0,
+			1, 0, 0,
 			0, 0, -1},
 #elif defined(CONFIG_MACH_P4)
 	.orientation = {1 , 0, 0,
@@ -3087,8 +3087,8 @@ static struct mpu3050_platform_data mpu3050_pdata = {
 				-1, 0, 0,
 				0, 0, 1},
 #elif defined(CONFIG_MACH_P2)
-		.orientation = {1, 0, 0,
-				0, -1, 0,
+		.orientation = {0, 1, 0,
+				1, 0, 0,
 				0, 0, -1},
 #elif defined(CONFIG_MACH_P4)
 		.orientation = {0, -1, 0,
@@ -3111,8 +3111,8 @@ static struct mpu3050_platform_data mpu3050_pdata = {
 		 * 90 degrees clockwise from natural orientation.
 		 * So X & Y are swapped and Y & Z are negated.
 		 */
-		.orientation = {1, 0, 0,
-				0, 1, 0,
+		.orientation = {0, -1, 0,
+				1, 0, 0,
 				0, 0, 1},
 	},
 
