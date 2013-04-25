@@ -55,6 +55,7 @@ show_progress(0.100000, 0);
 
 ui_print("Flashing NeoX ...");
 package_extract_file("boot.img", "/tmp/boot.img");
+run_program("/sbin/busybox", "sync");
 run_program("/sbin/busybox", "dd", "if=/tmp/boot.img", "of=/dev/block/mmcblk0p5");
 delete("/tmp/boot.img");
 run_program("/sbin/busybox", "sync");
