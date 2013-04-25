@@ -290,7 +290,6 @@ static unsigned int get_nr_run_avg(void)
 #define HOTPLUG_DOWN_INDEX			(0)
 #define HOTPLUG_UP_INDEX			(1)
 
-#ifdef CONFIG_MACH_MIDAS
 static int hotplug_rq[4][2] = {
 	{0, 200}, {200, 300}, {300, 400}, {400, 0}
 };
@@ -301,18 +300,6 @@ static int hotplug_freq[4][2] = {
 	{1400000, 800000},
 	{500000, 0}
 };
-#else
-static int hotplug_rq[4][2] = {
-	{0, 350}, {290, 350}, {290, 400}, {350, 0}
-};
-
-static int hotplug_freq[4][2] = {
-	{0, 700000},
-	{500000, 800000},
-	{600000, 900000},
-	{700000, 0}
-};
-#endif
 
 static int cpufreq_governor_hydrx(struct cpufreq_policy *policy,
 		unsigned int event);
