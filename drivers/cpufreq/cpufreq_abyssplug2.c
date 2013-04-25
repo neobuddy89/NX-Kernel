@@ -556,17 +556,6 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 	if (num_online_cpus() < 2 && max_load > dbs_tuners_ins.up_threshold_hotplug) {
 			mutex_unlock(&this_dbs_info->timer_mutex);
 			cpu_up(1);
-			cpu_up(2);
-			cpu_up(3);
-			mutex_lock(&this_dbs_info->timer_mutex);
-	} else if (num_online_cpus() < 3 && max_load > dbs_tuners_ins.up_threshold_hotplug) {
-			mutex_unlock(&this_dbs_info->timer_mutex);
-			cpu_up(2);
-			cpu_up(3);
-			mutex_lock(&this_dbs_info->timer_mutex);
-	} else if (num_online_cpus() < 4 && max_load > dbs_tuners_ins.up_threshold_hotplug) {
-			mutex_unlock(&this_dbs_info->timer_mutex);
-			cpu_up(3);
 			mutex_lock(&this_dbs_info->timer_mutex);
 	}
 	
@@ -585,18 +574,7 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 		return;
 	}
 	
-	if (num_online_cpus() > 3 && max_load < dbs_tuners_ins.down_threshold_hotplug) {
-			mutex_unlock(&this_dbs_info->timer_mutex);
-			cpu_down(3);
-			cpu_down(2);
-			cpu_down(1);
-			mutex_lock(&this_dbs_info->timer_mutex);
-	} else if (num_online_cpus() > 2 && max_load < dbs_tuners_ins.down_threshold_hotplug) {
-			mutex_unlock(&this_dbs_info->timer_mutex);
-			cpu_down(2);
-			cpu_down(1);
-			mutex_lock(&this_dbs_info->timer_mutex);
-	} else if (num_online_cpus() > 1 && max_load < dbs_tuners_ins.down_threshold_hotplug) {
+	if (num_online_cpus() > 1 && max_load < dbs_tuners_ins.down_threshold_hotplug) {
 			mutex_unlock(&this_dbs_info->timer_mutex);
 			cpu_down(1);
 			mutex_lock(&this_dbs_info->timer_mutex);
@@ -802,7 +780,7 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 	return 0;
 }
 
-#ifndef CONFIG_CPU_FREQ_DEFAULT_GOV_ABYSSPLUG
+#ifndef CONFIG_CPU_FREQ_DEFAULT_GOV_ABYSSPLUG2
 static
 #endif
 struct cpufreq_governor cpufreq_gov_abyssplug = {
@@ -838,4 +816,3 @@ fs_initcall(cpufreq_gov_dbs_init);
 module_init(cpufreq_gov_dbs_init);
 #endif
 module_exit(cpufreq_gov_dbs_exit);
-
