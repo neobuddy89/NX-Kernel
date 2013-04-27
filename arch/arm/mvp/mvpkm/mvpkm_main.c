@@ -2274,6 +2274,7 @@ RunMonitor(MvpkmVM *vm)
             register uint32 r1 asm("r1") = wsp->regSave.ve.mHTTBR;
 
             asm volatile (
+               ".arch_extension sec\n\t"
                ".word " MVP_STRINGIFY(ARM_INSTR_HVC_A1_ENC(0))
                : "=r" (r1) : "r" (r1) : "r0", "r2", "memory"
             );
