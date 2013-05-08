@@ -415,6 +415,9 @@ extern struct cpufreq_governor cpufreq_gov_lagfree;
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_HYDRXQ)
 extern struct cpufreq_governor cpufreq_gov_hydrxq;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_hydrxq)
+#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_NEOX)
+extern struct cpufreq_governor cpufreq_gov_neox;
+#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_neox)
 #endif
 
 

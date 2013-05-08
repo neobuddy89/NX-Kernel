@@ -211,6 +211,10 @@ config CPU_FREQ_DEFAULT_GOV_HYDRXQ
 	help
           Use the CPUFreq governor 'hydrxq' as default.
 
+config CPU_FREQ_DEFAULT_GOV_NEOX
+	bool "NeoX"
+	select CPU_FREQ_GOV_NeoX
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -270,7 +274,7 @@ config CPU_FREQ_GOV_ONDEMAND
 
 config CPU_FREQ_GOV_ONDEMAND_FLEXRATE
 	bool "flexrate interface for 'ondemand' cpufreq policy governor"
-	depends on CPU_FREQ_GOV_ONDEMAND
+	depends on CPU_FREQ_GOV_ONDEMAND || CPU_FREQ_GOV_NEOX
 	help
 	  Flexrate for 'ondemand' governor provides an interface to request
 	  faster polling temporarily. This is to let it react quickly to
@@ -475,6 +479,14 @@ config CPU_FREQ_GOV_HYDRXQ
         depends on CPU_FREQ
         help
           'hydrxq' - hotplug mechanism added in lulzactive
+
+config CPU_FREQ_GOV_NEOX
+        tristate "'NeoX' cpufreq governor"
+        depends on CPU_FREQ
+        ---help---
+          'NeoX' - a tweaked "pegasusq" based smart and smooth optimized governor!
+
+           If in doubt, say Y.
 
 config SLP_CHECK_CPU_LOAD
         bool "check load and frequency of cpu"
