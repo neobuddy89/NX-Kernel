@@ -73,12 +73,12 @@ struct row_queue_params {
 static const struct row_queue_params row_queues_def[] = {
 /* idling_enabled, quantum, is_urgent */
 	{true, 100, true},	/* ROWQ_PRIO_HIGH_READ */
-	{true, 100, true},	/* ROWQ_PRIO_REG_READ */
-	{false, 2, false},	/* ROWQ_PRIO_HIGH_SWRITE */
-	{false, 1, false},	/* ROWQ_PRIO_REG_SWRITE */
-	{false, 1, false},	/* ROWQ_PRIO_REG_WRITE */
-	{false, 1, false},	/* ROWQ_PRIO_LOW_READ */
-	{false, 1, false}	/* ROWQ_PRIO_LOW_SWRITE */
+	{false, 5, false},	/* ROWQ_PRIO_HIGH_SWRITE */
+	{true, 75, true},	/* ROWQ_PRIO_REG_READ */
+	{false, 4, false},	/* ROWQ_PRIO_REG_SWRITE */
+	{false, 4, false},	/* ROWQ_PRIO_REG_WRITE */
+	{false, 3, false},	/* ROWQ_PRIO_LOW_READ */
+	{false, 2, false}	/* ROWQ_PRIO_LOW_SWRITE */
 };
 
 /* Default values for idling on read queues (in msec) */
