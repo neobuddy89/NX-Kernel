@@ -1810,6 +1810,10 @@ static struct notifier_block __refdata cpufreq_cpu_notifier = {
 void create_standard_UV_interfaces(void);
 #endif 
 
+#if defined(CONFIG_MALI_CONTROL)
+extern int register_mali_control(void);
+#endif
+
 /*********************************************************************
  *               REGISTER / UNREGISTER CPUFREQ DRIVER                *
  *********************************************************************/
@@ -1874,7 +1878,10 @@ int cpufreq_register_driver(struct cpufreq_driver *driver_data)
 	pr_debug("driver %s up and running\n", driver_data->name);
 #if defined(CONFIG_CPU_UNDERVOLTING)
   	create_standard_UV_interfaces();
-#endif 
+#endif
+#if defined(CONFIG_MALI_CONTROL)
+	register_mali_control();
+#endif
 	return 0;
 err_sysdev_unreg:
 	sysdev_driver_unregister(&cpu_sysdev_class,
