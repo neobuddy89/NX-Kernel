@@ -75,6 +75,12 @@ module_param(mali_boot_profiling, int, S_IRUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(mali_boot_profiling, "Start profiling as a part of Mali driver initialization");
 #endif
 
+#ifdef CONFIG_CPU_EXYNOS4210
+int mali_use_vpll = 0;
+module_param(mali_use_vpll, int, S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH); /* rw--rw--r-- */
+MODULE_PARM_DESC(mali_use_vpll, "Mali Use VPLL for Clock");
+#endif
+
 /* Export symbols from common code: mali_user_settings.c */
 #include "mali_user_settings_db.h"
 EXPORT_SYMBOL(mali_set_user_setting);
@@ -147,6 +153,25 @@ extern int step3_vol;
 module_param(step3_vol, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP| S_IROTH); /* rw-rw-r-- */
 MODULE_PARM_DESC(step3_vol, "Mali Current step3_vol");
 #endif
+
+#if (MALI_DVFS_STEPS > 4)
+extern int step4_clk;
+module_param(step4_clk, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP| S_IROTH); /* rw-rw-r-- */
+MODULE_PARM_DESC(step4_clk, "Mali Current step4_clk");
+
+extern int step3_up;
+module_param(step3_up, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP| S_IROTH); /* rw-rw-r-- */
+MODULE_PARM_DESC(step3_up, "Mali Current step3_up");
+
+extern int step4_down;
+module_param(step4_down, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP| S_IROTH); /* rw-rw-r-- */
+MODULE_PARM_DESC(step4_down, "Mali Current step4_down");
+#ifdef DEBUG
+extern int step4_vol;
+module_param(step4_vol, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP| S_IROTH); /* rw-rw-r-- */
+MODULE_PARM_DESC(step4_vol, "Mali Current step4_vol");
+#endif
+#endif
 #endif
 #endif
 #endif
@@ -163,6 +188,16 @@ MODULE_PARM_DESC(mali_gpu_vol, "Mali Current Voltage");
 extern int gpu_power_state;
 module_param(gpu_power_state, int, S_IRUSR | S_IRGRP | S_IROTH); /* r--r--r-- */
 MODULE_PARM_DESC(gpu_power_state, "Mali Power State");
+
+#if 0
+extern int mali_dvfs_utilization;
+module_param(mali_dvfs_utilization, int, S_IRUSR | S_IRGRP | S_IROTH); /* r--r--r-- */
+MODULE_PARM_DESC(mali_dvfs_utilization, "Mali Current Utilization");
+#endif
+
+extern int mali_gpu_utilization_timeout;
+module_param(mali_gpu_utilization_timeout, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP| S_IROTH); /* rw--rw--r-- */
+MODULE_PARM_DESC(mali_gpu_utilization_timeout, "Mali GPU Utilization Timeout");
 #endif
 
 
