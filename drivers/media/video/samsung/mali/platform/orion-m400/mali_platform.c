@@ -18,7 +18,7 @@
 #include "mali_platform.h"
 #include "mali_linux_pm.h"
 
-#if USING_MALI_PMM
+#if 0 //USING_MALI_PMM
 #include "mali_pm.h"
 #endif
 
@@ -98,10 +98,10 @@ extern struct platform_device exynos4_device_pd[];
 #endif
 #endif
 
-mali_io_address clk_register_map=0;
+mali_io_address clk_register_map = 0;
 
 #if MALI_GPU_BOTTOM_LOCK
-_mali_osk_lock_t *mali_dvfs_lock;
+_mali_osk_lock_t *mali_dvfs_lock = 0;
 #else
 static _mali_osk_lock_t *mali_dvfs_lock;
 #endif
@@ -410,7 +410,7 @@ static mali_bool init_mali_clock(void)
 
 
 #ifdef CONFIG_REGULATOR
-#if USING_MALI_PMM
+#if 0 //USING_MALI_PMM
 	g3d_regulator = regulator_get(&mali_gpu_device.dev, "vdd_g3d");
 #else
 	g3d_regulator = regulator_get(NULL, "vdd_g3d");
