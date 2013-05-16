@@ -134,10 +134,10 @@ int mdnie_send_sequence(struct mdnie_info *mdnie, const unsigned short *seq)
 	while (wbuf[i] != END_SEQ) {
 		if (g_mdnie->user_mode != 0x0000) {
 			switch (wbuf[i]) {
-				case 0x0063:
+				case 0x0061:
 					mdnie_write(wbuf[i], g_mdnie->user_cb);
 					break;
-				case 0x0065:
+				case 0x0063:
 					mdnie_write(wbuf[i], g_mdnie->user_cr);
 					break;
 				default:
@@ -223,7 +223,7 @@ void set_mdnie_value(struct mdnie_info *mdnie, u8 force)
 #if defined(CONFIG_TDMB) || defined(CONFIG_TARGET_LOCALE_NTT)
 etc:
 #endif
-	if (!IS_ERR_OR_NULL(etc_table[mdnie->cabc][mdnie->outdoor][mdnie->tone].seq)) {
+	if (!IS_ERR_OR_NULL(etc_table[mdnie->cabc][mdnie->outdoor == OUTDOOR_OFF][mdnie->tone].seq)) {
 		mdnie_send_sequence(mdnie, etc_table[mdnie->cabc][mdnie->outdoor][mdnie->tone].seq);
 		dev_info(mdnie->dev, "%s\n", etc_table[mdnie->cabc][mdnie->outdoor][mdnie->tone].name);
 	}

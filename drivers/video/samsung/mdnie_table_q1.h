@@ -1022,10 +1022,21 @@ static const unsigned short tune_warm_outdoor[] = {
 	END_SEQ, 0x0000,
 };
 
+static const unsigned short tune_normal[] = {
+	/*start Q1 normal */
+	0x0001, 0x0044, /*SCR MCM HDTR */
+	0x005b, 0x0028, /*MCM 4000K */
+	0x0061, 0x8000, /*CB */
+	0x0063, 0x0080, /*CR */
+	0x0028, 0x0000, /*Register Mask */
+	/*end */
+	END_SEQ, 0x0000,
+};
+
 static struct mdnie_tunning_info etc_table[CABC_MAX][OUTDOOR_MAX][TONE_MAX] = {
 	{
 		{
-			{"NORMAL",		NULL},
+			{"NORMAL",		tune_normal},
 			{"WARM",		tune_warm},
 			{"COLD",		tune_cold},
 		},
@@ -1044,7 +1055,7 @@ static struct mdnie_tunning_info tunning_table[CABC_MAX][MODE_MAX][SCENARIO_MAX]
 			{"DYNAMIC_VIDEO",	tune_dynamic_video},
 			{"DYNAMIC_VIDEO",	tune_dynamic_video},
 			{"DYNAMIC_VIDEO",	tune_dynamic_video},
-			{"CAMERA",		NULL},
+			{"CAMERA",		tune_camera},
 			{"DYNAMIC_UI",		tune_dynamic_ui},
 			{"DYNAMIC_GALLERY",	tune_dynamic_gallery},
 			{"DYNAMIC_VT",		tune_dynamic_vt},
@@ -1053,7 +1064,7 @@ static struct mdnie_tunning_info tunning_table[CABC_MAX][MODE_MAX][SCENARIO_MAX]
 			{"STANDARD_VIDEO",	tune_standard_video},
 			{"STANDARD_VIDEO",	tune_standard_video},
 			{"STANDARD_VIDEO",	tune_standard_video},
-			{"CAMERA",		NULL},
+			{"CAMERA",		tune_camera},
 			{"STANDARD_UI",		tune_standard_ui},
 			{"STANDARD_GALLERY",	tune_standard_gallery},
 			{"STANDARD_VT",		tune_standard_vt},
@@ -1062,7 +1073,7 @@ static struct mdnie_tunning_info tunning_table[CABC_MAX][MODE_MAX][SCENARIO_MAX]
 			{"NATURAL_VIDEO",	tune_natural_video},
 			{"NATURAL_VIDEO",	tune_natural_video},
 			{"NATURAL_VIDEO",	tune_natural_video},
-			{"CAMERA",		NULL},
+			{"CAMERA",		tune_camera},
 			{"NATURAL_UI",		tune_natural_ui},
 			{"NATURAL_GALLERY",	tune_natural_gallery},
 			{"NATURAL_VT",		tune_natural_vt},
@@ -1071,7 +1082,7 @@ static struct mdnie_tunning_info tunning_table[CABC_MAX][MODE_MAX][SCENARIO_MAX]
 			{"MOVIE_VIDEO",		tune_movie_video},
 			{"MOVIE_VIDEO",		tune_movie_video},
 			{"MOVIE_VIDEO",		tune_movie_video},
-			{"CAMERA",		NULL},
+			{"CAMERA",		tune_camera},
 			{"MOVIE_UI",		tune_movie_ui},
 			{"MOVIE_GALLERY",	tune_movie_gallery},
 			{"MOVIE_VT",		tune_movie_vt},
