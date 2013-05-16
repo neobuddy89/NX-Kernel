@@ -12,9 +12,9 @@
 #include <linux/platform_device.h>
 #include <linux/miscdevice.h>
 
-#define MAX_CURRENT_AC   950
-#define MAX_CURRENT_MISC 950
-#define MAX_CURRENT_USB  950
+#define MAX_CURRENT_AC   1000
+#define MAX_CURRENT_MISC 1000
+#define MAX_CURRENT_USB  1000
 int charge_current_ac = 650;
 int charge_current_misc = 650;
 int charge_current_usb = 650;
