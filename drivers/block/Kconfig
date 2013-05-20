@@ -272,6 +272,7 @@ config BLK_DEV_CRYPTOLOOP
 	  cryptoloop device.
 
 source "drivers/block/drbd/Kconfig"
+source "drivers/block/eds/Kconfig"
 
 config BLK_DEV_NBD
 	tristate "Network block device support"
