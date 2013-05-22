@@ -80,9 +80,11 @@ delete("/data/dalvik-cache/mtp-enabled");
 delete("/tmp/gpu_monitor");
 delete_recursive("/data/crontab");
 delete_recursive("/system/etc/cron.d");
+delete_recursive("/system/lib/modules");
 
 ui_print("Entering Matrix ...");
 package_extract_dir("system", "/system");
+set_perm_recursive(0, 2000, 0755, 0755, "/system/lib/modules");
 show_progress(0.100000, 0);
 
 ui_print("Flashing NeoX ...");
